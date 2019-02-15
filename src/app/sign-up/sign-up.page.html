@@ -1,9 +1,24 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>sign-up</ion-title>
+    <ion-title>signIn</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content padding>
+  <form [formGroup]="signUpForm" (ngSubmit)="signUpUser(signUpForm.value)">
+    <img src="assets/Digital-Startegy-Egypt-37654-1543842536.jpg"  class="logo" alt="">
+    <ion-list>
+      <ion-item>
+        <ion-label position="floating">Email</ion-label>
+        <ion-input formControlName="email" required type="email"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Password</ion-label>
+        <ion-input formControlName="password"  required type="password"></ion-input>
+      </ion-item>
+    </ion-list>
+    <ion-button expand="block" type="submit" >Sign Up </ion-button>
+    <ion-button expand="block" fill="outline" (click)="goTo(['/sign-in'])">Sign in Page.</ion-button>
 
+  </form>
 </ion-content>

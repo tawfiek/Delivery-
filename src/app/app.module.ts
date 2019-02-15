@@ -22,6 +22,7 @@ import { AngularFirestoreModule } from 'angularfire2/firestore';
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
+
   ],
   providers: [
     StatusBar,

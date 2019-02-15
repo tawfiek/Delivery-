@@ -1,8 +1,56 @@
 import { Component } from '@angular/core';
+import {AuthService} from '../services/user/auth.service';
+import {AlertController, LoadingController} from '@ionic/angular';
 
 @Component({
   selector: 'app-tab2',
   templateUrl: 'tab2.page.html',
   styleUrls: ['tab2.page.scss']
 })
-export class Tab2Page {}
+export class Tab2Page {
+  loading;
+
+  constructor (private authService: AuthService,
+               private loadingCtrl: LoadingController,
+               private alertCtrl: AlertController) {
+
+  }
+
+  /**
+   * Logout User
+   */
+  logout (){
+    this.presentLoading('Logout').then(()=>{
+      this.authService.logoutUser().then(()=>{
+        this.loading.dismiss();
+      }).catch((err)=> {
+        this.presentAlert(err.message);
+      })
+    })
+  }
+
+  /**
+   * Function to  present an loading..
+   * @param message: message of loading
+   */
+  async presentLoading (message) {
+    this.loading = await this.loadingCtrl.create({message: message});
+    this.loading.present();
+  }
+
+
+  /**
+   * Function to  present an alert..
+   * @param header: Header of the alert
+   * @param message: message of alert
+   */
+  async presentAlert(header?: string ,message?: string) {
+    const alert = await this.alertCtrl.create({
+      header: header,
+      message: message,
+      buttons: ['OK']
+    });
+
+    await alert.present();
+  }
+}
