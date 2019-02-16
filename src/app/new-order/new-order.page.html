@@ -1,0 +1,30 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="end">
+      <ion-button (click)="close(false)">
+        CLose
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Add New Order</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <form [formGroup]="orderForm" (ngSubmit)="addOrder(orderForm.value)" >
+    <ion-list>
+      <ion-item>
+        <ion-label position="floating">Order Details</ion-label>
+        <ion-textarea formControlName="details" required type="text"></ion-textarea>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Order Address From </ion-label>
+        <ion-textarea  formControlName="addressFrom" required type="text"></ion-textarea>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Order Address to </ion-label>
+        <ion-textarea formControlName="addressTo" required type="text"></ion-textarea>
+      </ion-item>
+      <ion-button expand="block" type="submit" [disabled]="!orderForm.valid" >Add Order</ion-button>
+    </ion-list>
+  </form>
+</ion-content>

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import {AuthService} from '../services/user/auth.service';
-import {AlertController, LoadingController} from '@ionic/angular';
+import {AlertController, LoadingController, ModalController} from '@ionic/angular';
+import {NewOrderPage} from '../new-order/new-order.page';
 
 @Component({
   selector: 'app-tab1',
@@ -12,10 +13,19 @@ export class Tab1Page {
 
   constructor (private authService: AuthService,
                private loadingCtrl: LoadingController,
-               private alertCtrl: AlertController) {
+               private alertCtrl: AlertController,
+               private  modalCtrl: ModalController) {
 
   }
 
+
+  /**
+   * present a modal with a form to ad new order
+   */
+  async presentAddModal () {
+    const modal = await this.modalCtrl.create({component: NewOrderPage});
+    return await modal.present();
+  }
   /**
    * Logout User
    */

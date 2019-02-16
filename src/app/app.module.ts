@@ -12,6 +12,7 @@ import { AppComponent } from './app.component';
 import { AngularFireModule } from 'angularfire2';
 import { environment } from '../environments/environment';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
+import {NewOrderPageModule} from './new-order/new-order.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -22,7 +23,7 @@ import { AngularFirestoreModule } from 'angularfire2/firestore';
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
-
+    NewOrderPageModule
   ],
   providers: [
     StatusBar,
