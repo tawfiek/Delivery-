@@ -8,7 +8,7 @@ import {Order} from '../../interfaces/order';
 })
 export class NewOrdersService {
   private ordersCollection: AngularFirestoreCollection<Order>;
-  private orders: Observable<Order[]>;
+  private readonly orders: Observable<Order[]>;
 
   constructor(private db: AngularFirestore) {
     this.ordersCollection = db.collection<Order>('orders');
@@ -39,7 +39,7 @@ export class NewOrdersService {
     return this.ordersCollection.add(order);
   }
 
-  removeTodo(id) {
+  removeOrder(id) {
     return this.ordersCollection.doc(id).delete();
   }
 

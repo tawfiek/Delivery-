@@ -1,20 +1,28 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {AuthService} from '../services/user/auth.service';
 import {AlertController, LoadingController} from '@ionic/angular';
+import {DoneOrdersService} from '../services/orders/done-orders.service';
 
 @Component({
   selector: 'app-tab2',
   templateUrl: 'tab2.page.html',
   styleUrls: ['tab2.page.scss']
 })
-export class Tab2Page {
+export class Tab2Page implements OnInit {
   loading;
+  orders;
 
   constructor (private authService: AuthService,
                private loadingCtrl: LoadingController,
-               private alertCtrl: AlertController) {
+               private alertCtrl: AlertController,
+               private doneOrdersService: DoneOrdersService) {
 
   }
+
+  ngOnInit(): void {
+    this.getAllOrders();
+  }
+
 
   /**
    * Logout User
@@ -50,7 +58,26 @@ export class Tab2Page {
       message: message,
       buttons: ['OK']
     });
-
     await alert.present();
+  }
+
+  /**
+   * Get all orders
+   */
+  getAllOrders () {
+    this.presentLoading('loading').then(()=>{
+      this.doneOrdersService.getOrders().subscribe(res=>{
+        this.orders = res;
+        console.log(this.orders);
+        this.loading.dismiss();
+      }, err=> {
+        this.loading.dismiss();
+        if (err.message) {
+          this.presentAlert('Error', err.message);
+        } else {
+          this.presentAlert('Error', 'Please Check your connection')
+        }
+      })
+    })
   }
 }

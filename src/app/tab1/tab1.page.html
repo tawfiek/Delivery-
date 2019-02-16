@@ -13,11 +13,39 @@
 
 <ion-content>
    <ion-list>
-     <ion-item>
-       <ion-card>
+     <div *ngFor="let order of orders; let i = index" >
+       <ion-item >
+         <ion-card >
+           <ion-row>
+             <ion-col size="4" >Address from:  </ion-col>
+             <ion-col size="8" >{{order?.addressFrom}}</ion-col>
+           </ion-row>
+           <ion-row>
+             <ion-col size="4">Address TO:  </ion-col>
+             <ion-col size="8" >{{order?.addressTo}}</ion-col>
 
-       </ion-card>
-     </ion-item>
+           </ion-row>
+           <ion-row>
+             <ion-col size="4">Details:  </ion-col>
+             <ion-col size="8" >{{order?.details}}</ion-col>
+
+           </ion-row>
+           <ion-row>
+             <ion-col size="4" >Sender:  </ion-col>
+             <ion-col size="8" >{{order?.createdBy}}</ion-col>
+
+           </ion-row>
+           <ion-row>
+             <ion-col size="4" >Added at: </ion-col>
+             <ion-col size="8" >{{order?.createdAt.toDate().toDateString()}} </ion-col>
+
+           </ion-row>
+           <ion-button expand="full"  (click)="deliverOrder(i)"  size="default">
+             <ion-icon name="send"></ion-icon> Deliver
+           </ion-button>
+         </ion-card>
+       </ion-item>
+     </div>
    </ion-list>
   <ion-fab vertical="bottom" horizontal="center" slot="fixed">
     <ion-fab-button (click)="presentAddModal()" routerDirection="forward">

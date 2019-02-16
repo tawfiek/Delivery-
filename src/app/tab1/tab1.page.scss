@@ -2,3 +2,10 @@
   max-height: 35vh;
   overflow: hidden;
 }
+ion-card {
+  width: 100%;
+}
+ion-col.hydrated {
+  font-size: initial;
+  font-family: fantasy;
+}

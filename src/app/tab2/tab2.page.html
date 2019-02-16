@@ -6,9 +6,49 @@
       </ion-button>
     </ion-buttons>
     <ion-title>
-      Tab Two
+      Previous order
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content></ion-content>
+<ion-content>
+  <ion-list>
+    <div *ngFor="let order of orders" >
+      <ion-item >
+        <ion-card >
+          <ion-row>
+            <ion-col size="4" >Address from:  </ion-col>
+            <ion-col size="8" >{{order?.addressFrom}}</ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col size="4">Address TO:  </ion-col>
+            <ion-col size="8" >{{order?.addressTo}}</ion-col>
+
+          </ion-row>
+          <ion-row>
+            <ion-col size="4">Details:  </ion-col>
+            <ion-col size="8" >{{order?.details}}</ion-col>
+
+          </ion-row>
+          <ion-row>
+            <ion-col size="4" >Sender:  </ion-col>
+            <ion-col size="8" >{{order?.createdBy}}</ion-col>
+
+          </ion-row>
+          <ion-row>
+            <ion-col size="4" >Added at: </ion-col>
+            <ion-col size="8" >{{order?.createdAt.toDate().toDateString()}} </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col size="4" >Delivered at: </ion-col>
+            <ion-col size="8" >{{order?.deliveredAt.toDate().toDateString()}} </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col size="4" >Delivered By: </ion-col>
+            <ion-col size="8" >{{order?.deliveredBy}} </ion-col>
+          </ion-row>
+        </ion-card>
+      </ion-item>
+    </div>
+  </ion-list>
+</ion-content>
